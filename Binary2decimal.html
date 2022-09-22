@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	//Splits the string into an array, reverses the array, casts them to int individiually and does the x2 method and adds the values for the final result
+	//Based on a simple html webpage for easier usage
+	function binary2Decimal(){
+    decimalValue = 0;
+    userInput = window.prompt("Enter a binary number");
+    userInputSplit = userInput.split("").reverse();
+	inputLength = userInputSplit.length
+    for (i = 0; i < inputLength; i++) {
+        currentBit = parseInt(userInputSplit[i]) ;
+        currentValue = currentBit * 2 ** i;
+        decimalValue = decimalValue + currentValue;
+    }
+    window.alert("Your value = " + decimalValue)
+
+	}
+	//works out if there is a remainder after div 2 and adds it to the binary number, the div 2 then replaces the old value and it is repeated
+	function decimal2Binary(){
+	bitList = []
+	userInput = window.prompt("Enter a decimal number");
+	userInput = parseInt(userInput);
+	while (userInput > 0) {
+		binaryBit = userInput % 2
+		bitList.unshift(binaryBit);
+		userInput = Math.floor(userInput/2);
+	}
+	finalValue = bitList.join("");
+	window.alert("Your value = " + finalValue);
+	}
+</script>
+</head>
+<body>
+	<h1>Binary-Decimal converter<h1>
+	<p>Select which way you would like to convert your number<p>
+	<Button onclick="binary2Decimal()">Binary to decimal</button>
+	<Button onclick="decimal2Binary()">Decimal to binary</button>
+</body>
