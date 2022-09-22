@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<style>
+	body{
+	background-color: #707070;
+	}
+	table{
+		color: white;
+		font-family:calibri;
+		font-weight:bold;
+		background-color: #404040;
+		border: 5px solid #404040; border-radius:20px;
+		box-shadow: 5px 10px #606060;
+	}
+	h1{
+		font-family: impact;
+		text-align: center;
+		color: #2819E0;
+		border: 3px solid blue; border-radius:20px;
+		border-style: inset;
+	}
+	input{
+		border-radius:7px;
+	}
+</style>
+<html>
+	<body>
+		<script>
+			
+			function calculateMark(){
+				//taking the values from the fields
+				nameSubjectCheck=false
+				grade=""
+				table = document.getElementById("inputFields");
+				mark = document.getElementById("examMark").value;
+				examNum = document.getElementById("examNumField").value;
+				name = document.getElementById("nameField").value;
+				subject = document.getElementById("subjectField").value;
+				gradeOutput = document.getElementById("gradeOutput");
+				markEmpty = false
+				
+				//checking if the mark field is empty
+				if (mark == ""){
+					markEmpty = true
+				};
+				
+				//checking if name or subject field is empty
+				if (name != "" && subject != ""){
+					nameSubjectCheck=true
+					
+					//checking if the exam number is valid
+					if (examNum >= 1000 && examNum <= 9999){
+						
+						//mark calculations
+						if (mark < 20 && mark >=0 && markEmpty == false){
+							grade="U";
+						}
+						else if (mark >= 20 && mark < 35 && markEmpty == false){
+							grade="F";
+						}
+						else if (mark >=35 && mark < 50 && markEmpty == false){
+							grade="D";
+						}
+						else if (mark >=50 && mark < 65 && markEmpty == false){
+							grade="C";
+						}
+						else if (mark >=65 && mark < 80 && markEmpty == false){
+							grade="B";
+						}
+						else if (mark >=80 && mark <= 100 && markEmpty == false){
+							grade="A";
+						}
+						// changing the text to red for mark
+						else if (mark < 0 || mark > 100 || markEmpty == true){
+							table.style.color = "red";
+							window.alert("Enter a mark from 0-100");
+						}
+						}
+						
+						// changing the text to red for the exam number 
+						else{
+							table.style.color = "red";
+							window.alert("Please enter an exam number from 1000 to 9999");
+						};
+				}
+				// changing the text to red for name/subject
+				else{
+					table.style.color = "red";
+					window.alert("Enter a name and subject");
+				};
+				//grade output and reversing red color if needed
+				if (examNum >= 1000 && examNum <= 9999 && grade !="" && nameSubjectCheck==true){
+					gradeOutput.innerHTML="Your grade is: "+ grade;
+					table.style.color = "white";
+				}
+			};
+			
+			//clearing all of the fields via the reset button
+			function resetFields(){
+				document.getElementById("nameField").value=""
+				document.getElementById("subjectField").value=""
+				document.getElementById("examNumField").value=""
+				document.getElementById("examMark").value=""
+				table.style.color = "white";
+			}
+		</script>
+
+		<h1 style="width: 330px; text-align: center; margin:auto;">Exam grade calculator</h1>
+		<div id="form"><br>
+		<table id="inputFields" style=;margin-left:auto;margin-right:auto; >
+			<tr>
+				<td id="nameLabel">Name</td>
+				<td><input type="text" id="nameField" /></td>
+			</tr>
+			<tr>
+				<td id="subjectLabel">Subject</td>
+				<td><input type="text" id="subjectField" /></td>
+			</tr>
+			<tr>
+				<td id="examNumLabel">Examination number</td>
+				<td> <input type="number" id="examNumField" /></td>
+			</tr>
+			<tr>
+				<td id="examMarkLabel">Exam mark</td>
+				<td><input type="number" id="examMark" /></td>
+			</tr>
+			<tr>
+				<td><button onclick="calculateMark();">Submit</button></td>
+				<td><button onclick="resetFields();">Reset</button></td>
+			</tr>
+			<tr>
+				<td><label id="gradeOutput"></label></td>
+			</tr>
+		</div>
+		</table>
+
+		
+
+		
